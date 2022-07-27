@@ -57,6 +57,7 @@ public class LinkedList<T> {
         }
         // add the new item to the linked list
         head.next = new Node(elem, null);
+        size += 1;
     }
 
     // Retrieve the last item of a linked list
