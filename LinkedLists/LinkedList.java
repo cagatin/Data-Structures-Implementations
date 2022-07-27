@@ -10,6 +10,8 @@ public class LinkedList<T> {
         }
     }
 
+    // [sentinel | -]--> [1 | -]--> [2 | -]--> [3 | -]--> [4 | null]
+
     private Node sentinel;
     public int size;
 
@@ -57,6 +59,7 @@ public class LinkedList<T> {
         head.next = new Node(elem, null);
     }
 
+    // Retrieve the last item of a linked list
     public T getLast() {
         // Create a pointer to traverse through the linked list.
         Node head = sentinel;
@@ -73,11 +76,36 @@ public class LinkedList<T> {
         return head.item;
     }
 
+    // Reverse the linked list;
+    public void reverse() {
+        Node prev = null; // reference to the previous node in the linked list
+        Node curr = sentinel.next; // reference to the current node in the linked list
+        Node next = null; // reference to the next node in the linked list
+
+        // While the current node is not null...
+        while (curr != null) {
+            // Advance the next pointer to the next node in the link
+            next = curr.next;
+
+            // Reverse the current link's next pointer to point at the previous link.
+            curr.next = prev;
+
+            // Advance the previous pointer.
+            prev = curr;
+
+            // Advance the current pointer.
+            curr = next;
+        }
+        sentinel.next = prev;
+    }
+
     public static void main(String[] args) {
         LinkedList<Integer> L = new LinkedList<Integer>();
         L.addFirst(20);
         L.addFirst(15);
         L.addFirst(10);
         System.out.println(L.getLast());
+        L.reverse();
+        System.out.println(L.getFirst());
     }
 }
