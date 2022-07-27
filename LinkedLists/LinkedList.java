@@ -57,6 +57,22 @@ public class LinkedList<T> {
         head.next = new Node(elem, null);
     }
 
+    public T getLast() {
+        // Create a pointer to traverse through the linked list.
+        Node head = sentinel;
+
+        /*
+         * While the head pointer's next variable is not equal to a null value...
+         * advance the head pointer to the next link!
+         */
+        while (head.next != null) {
+            head = head.next;
+        }
+
+        // At this point, we've reached the end of the linked list. Return the element.
+        return head.item;
+    }
+
     public static void main(String[] args) {
         LinkedList<Integer> L = new LinkedList<Integer>();
         L.addFirst(20);
