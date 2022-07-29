@@ -82,16 +82,25 @@ public class DLList<T> {
 
     // returns true if the list contains the element x
     public boolean contains(T x) {
+        // If the linked list is empty, return false.
         if (size == 0) {
             return false;
         }
 
+        // Create a pointer for the first node in the linked list
         Node curr = sentinel.next;
+
+        // While the pointer is not the sentinel node (end of the list)...
         while (curr != sentinel) {
+            // Create a reference to the item found at node.val
             T item = curr.val;
+
+            // check if the item is equal to the item passed in as a paramter to contains
             if (item == x) {
+                // if they are equal, return true.
                 return true;
             }
+            // continue the iteration.
             curr = curr.next;
         }
         return false;
