@@ -68,16 +68,30 @@ public class DLList<T> {
         size += 1;
     }
 
+    // retrieve the last item from the linked list
     public T getLast() {
         return sentinel.prev.val;
+    }
+
+    // remove the last item in the linked list
+    public void removeLast() {
+        sentinel.prev.prev.next = sentinel;
+        sentinel.prev = sentinel.prev.prev;
+        size -= 1;
     }
 
     public static void main(String[] args) {
         DLList<Integer> D = new DLList<Integer>();
         D.addFirst(2);
-        D.addFirst(1);
         D.addLast(3);
+        D.addFirst(7);
+        D.addLast(6);
+        D.addLast(1);
+
         D.removeFirst();
+        D.removeLast();
+
         System.out.println(D.getFirst());
+        System.out.println(D.getLast());
     }
 }
