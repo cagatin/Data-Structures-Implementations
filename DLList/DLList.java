@@ -18,9 +18,15 @@ public class DLList<T> {
 
     // Constructor for empty DLList
     public DLList() {
+        // Initialize the sentinel node with null values.
         sentinel = new Node(null, null, null);
+
+        // set the next pointer of the sentinel node to point at the sentinel.
         sentinel.next = sentinel;
+
+        // set the prev pointer of the sentinel node to point at the sentinel.
         sentinel.prev = sentinel;
+
         size = 0;
     }
 
@@ -48,10 +54,23 @@ public class DLList<T> {
         return sentinel.next.val;
     }
 
+    // add to the end of the linked list
+    public void addLast(T item) {
+        sentinel.prev = new Node(item, sentinel, sentinel.prev);
+        sentinel.prev.prev.next = sentinel.prev;
+        size += 1;
+    }
+
+    public T getLast() {
+        return sentinel.prev.val;
+    }
+
     public static void main(String[] args) {
         DLList<Integer> D = new DLList<Integer>();
-        D.addFirst(1);
         D.addFirst(2);
+        D.addFirst(1);
+        D.addLast(3);
+        System.out.println(D.getLast());
         System.out.println(D.getFirst());
     }
 }
