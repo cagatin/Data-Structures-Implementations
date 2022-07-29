@@ -80,6 +80,23 @@ public class DLList<T> {
         size -= 1;
     }
 
+    // returns true if the list contains the element x
+    public boolean contains(T x) {
+        if (size == 0) {
+            return false;
+        }
+
+        Node curr = sentinel.next;
+        while (curr != sentinel) {
+            T item = curr.val;
+            if (item == x) {
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         DLList<Integer> D = new DLList<Integer>();
         D.addFirst(2);
@@ -88,10 +105,9 @@ public class DLList<T> {
         D.addLast(6);
         D.addLast(1);
 
-        D.removeFirst();
-        D.removeLast();
-
-        System.out.println(D.getFirst());
-        System.out.println(D.getLast());
+        System.out.println(D.contains(4));
+        System.out.println(D.contains(1));
+        System.out.println(D.contains(3));
+        System.out.println(D.contains(20));
     }
 }
