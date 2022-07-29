@@ -54,6 +54,13 @@ public class DLList<T> {
         return sentinel.next.val;
     }
 
+    // remove the first item from the linked list
+    public void removeFirst() {
+        sentinel.next.next.prev = sentinel;
+        sentinel.next = sentinel.next.next;
+        size -= 1;
+    }
+
     // add to the end of the linked list
     public void addLast(T item) {
         sentinel.prev = new Node(item, sentinel, sentinel.prev);
@@ -70,7 +77,7 @@ public class DLList<T> {
         D.addFirst(2);
         D.addFirst(1);
         D.addLast(3);
-        System.out.println(D.getLast());
+        D.removeFirst();
         System.out.println(D.getFirst());
     }
 }
