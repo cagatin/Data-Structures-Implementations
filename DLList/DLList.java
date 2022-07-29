@@ -97,10 +97,8 @@ public class DLList<T> {
 
             // check if the item is equal to the item passed in as a paramter to contains
             if (item == x) {
-                // if they are equal, return true.
                 return true;
             }
-            // continue the iteration.
             curr = curr.next;
         }
         return false;
