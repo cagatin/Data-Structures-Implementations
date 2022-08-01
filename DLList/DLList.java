@@ -99,7 +99,7 @@ public class DLList<T> {
             pos--;
         }
         curr.next = new Node(item, curr.next, curr);
-        curr.next.prev = curr.next;
+        curr.next.next.prev = curr.next;
         size += 1;
     }
 
@@ -122,7 +122,7 @@ public class DLList<T> {
         D.add(1, 0);
         D.add(2, 1);
 
-        D.printDeque();
+        D.printList();
 
     }
 }
