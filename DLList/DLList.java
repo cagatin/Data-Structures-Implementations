@@ -1,32 +1,26 @@
 // Doubly Linked List with prev and next pointers.
 public class DLList<T> {
     private class Node {
-        public T val; // item in the linked list
-        public Node next; // next node in the linked list
-        public Node prev; // prev node in the linked list
+        T val;
+        Node next;
+        Node prev;
 
-        public Node(T v, Node n, Node p) {
-            val = v;
+        public Node(T item, Node n, Node p) {
+            val = item;
             next = n;
             prev = p;
         }
     }
 
     // Instance variables
-    private Node sentinel; // sentinel node which acts as the head of the linked list.
-    public int size; // cache the size of the linked list
+    private Node sentinel;
+    public int size;
 
     // Constructor for empty DLList
     public DLList() {
-        // Initialize the sentinel node with null values.
         sentinel = new Node(null, null, null);
-
-        // set the next pointer of the sentinel node to point at the sentinel.
         sentinel.next = sentinel;
-
-        // set the prev pointer of the sentinel node to point at the sentinel.
         sentinel.prev = sentinel;
-
         size = 0;
     }
 
@@ -34,69 +28,61 @@ public class DLList<T> {
     public DLList(T item) {
         sentinel = new Node(null, null, null);
         sentinel.next = new Node(item, sentinel, sentinel);
-        size = 1;
+        size += 1;
     }
 
-    // getter for size of linked list
-    public int size() {
-        return size;
-    }
-
-    // add to the front of the linked list
+    // Add an item to the front of the DLList
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel.next, sentinel);
         sentinel.next.next.prev = sentinel.next;
         size += 1;
     }
 
-    // retrieve the first item in the linked list
-    public T getFirst() {
-        return sentinel.next.val;
-    }
-
-    // remove the first item from the linked list
-    public void removeFirst() {
-        sentinel.next.next.prev = sentinel;
-        sentinel.next = sentinel.next.next;
-        size -= 1;
-    }
-
-    // add to the end of the linked list
+    // Add an item to the end of the DLList
     public void addLast(T item) {
         sentinel.prev = new Node(item, sentinel, sentinel.prev);
         sentinel.prev.prev.next = sentinel.prev;
         size += 1;
     }
 
-    // retrieve the last item from the linked list
+    // Get the value of the front node
+    public T getFirst() {
+        return sentinel.next.val;
+    }
+
+    // Get the value of the last node
     public T getLast() {
         return sentinel.prev.val;
     }
 
-    // remove the last item in the linked list
-    public void removeLast() {
-        sentinel.prev.prev.next = sentinel;
-        sentinel.prev = sentinel.prev.prev;
+    // remove the node at the front of the DLList
+    public void removeFirst() {
+        sentinel.next = sentinel.next.next;
+        sentinel.next.prev = sentinel;
         size -= 1;
     }
 
-    // returns true if the list contains the element x
-    public boolean contains(T x) {
-        // If the linked list is empty, return false.
+    // remove the node at the end of the DLList
+    public void removeLast() {
+        sentinel.prev = sentinel.prev.prev;
+        sentinel.prev.next = sentinel;
+        size -= 1;
+    }
+
+    // return the number of nodes in the list
+    public int size() {
+        return size;
+    }
+
+    // returns true if the list contains element 'item'
+    public boolean contains(T item) {
         if (size == 0) {
             return false;
         }
 
-        // Create a pointer for the first node in the linked list
         Node curr = sentinel.next;
-
-        // While the pointer is not the sentinel node (end of the list)...
         while (curr != sentinel) {
-            // Create a reference to the item found at node.val
-            T item = curr.val;
-
-            // check if the item is equal to the item passed in as a paramter to contains
-            if (item == x) {
+            if (curr.val == item) {
                 return true;
             }
             curr = curr.next;
@@ -104,17 +90,38 @@ public class DLList<T> {
         return false;
     }
 
+    // adds an element at an arbitrary location
+    public void add(T item, int pos) {
+        if (pos > size() - 1) {
+            throw new Error("Position exceeds size of the linked list.");
+        }
+        if (pos < 0) {
+            throw new Error(
+                    "Position must be a valid number greater than 0, and less than the number of nodes in the List.");
+        }
+        if (pos == 0) {
+            addFirst(item);
+        }
+        if (pos == size() - 1) {
+            addLast(item);
+        }
+
+        Node curr = sentinel;
+        while (pos != 0) {
+            curr = curr.next;
+            pos--;
+        }
+        curr.next = new Node(item, curr.next, curr);
+        curr.next.next.prev = curr.next;
+        size += 1;
+    }
+
     public static void main(String[] args) {
         DLList<Integer> D = new DLList<Integer>();
-        D.addFirst(2);
-        D.addLast(3);
-        D.addFirst(7);
-        D.addLast(6);
-        D.addLast(1);
 
-        System.out.println(D.contains(4));
         System.out.println(D.contains(1));
         System.out.println(D.contains(3));
         System.out.println(D.contains(20));
+        System.out.println(D.contains(15));
     }
 }
