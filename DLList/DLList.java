@@ -91,6 +91,7 @@ public class DLList<T> {
     }
 
     // adds an element at an arbitrary location
+    // pos 0 --> 1st node in the DLList
     public void add(T item, int pos) {
         Node curr = sentinel;
         while (pos != 0) {
@@ -103,7 +104,7 @@ public class DLList<T> {
     }
 
     // Print the linked list
-    public void printDeque() {
+    public void printList() {
         Node ptr = sentinel;
         while (ptr.next != sentinel) {
             ptr = ptr.next;
