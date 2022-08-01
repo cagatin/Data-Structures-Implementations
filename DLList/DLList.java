@@ -92,36 +92,36 @@ public class DLList<T> {
 
     // adds an element at an arbitrary location
     public void add(T item, int pos) {
-        if (pos > size() - 1) {
-            throw new Error("Position exceeds size of the linked list.");
-        }
-        if (pos < 0) {
-            throw new Error(
-                    "Position must be a valid number greater than 0, and less than the number of nodes in the List.");
-        }
-        if (pos == 0) {
-            addFirst(item);
-        }
-        if (pos == size() - 1) {
-            addLast(item);
-        }
-
         Node curr = sentinel;
         while (pos != 0) {
             curr = curr.next;
             pos--;
         }
         curr.next = new Node(item, curr.next, curr);
-        curr.next.next.prev = curr.next;
+        curr.next.prev = curr.next;
         size += 1;
+    }
+
+    // Print the linked list
+    public void printDeque() {
+        Node ptr = sentinel;
+        while (ptr.next != sentinel) {
+            ptr = ptr.next;
+            System.out.print(ptr.val);
+            System.out.print(" ");
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
         DLList<Integer> D = new DLList<Integer>();
+        D.addLast(5);
+        D.addFirst(4);
+        D.addFirst(3);
+        D.add(1, 0);
+        D.add(2, 1);
 
-        System.out.println(D.contains(1));
-        System.out.println(D.contains(3));
-        System.out.println(D.contains(20));
-        System.out.println(D.contains(15));
+        D.printDeque();
+
     }
 }
