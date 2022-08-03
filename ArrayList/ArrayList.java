@@ -15,18 +15,16 @@ public class ArrayList {
     }
 
     // Method to to resize the underlying array
-    private void resize() {
-        int newMaxCapacity = MAX_CAPACITY * 2;
-        int[] newArr = new int[newMaxCapacity];
+    private void resize(int capacity) {
+        int[] newArr = new int[capacity * 2];
         System.arraycopy(items, 0, newArr, 0, size);
-        MAX_CAPACITY = newMaxCapacity;
         items = newArr;
     }
 
     // Inserts an item at the end of the ArrayList
     public void addLast(int item) {
-        if (size == MAX_CAPACITY) {
-            resize();
+        if (size == items.length) {
+            resize(items.length * 2);
         }
         items[size] = item;
         size += 1;
