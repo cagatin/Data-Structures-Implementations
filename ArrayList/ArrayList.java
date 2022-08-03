@@ -16,8 +16,10 @@ public class ArrayList {
 
     // Method to to resize the underlying array
     private void resize() {
-        int[] newArr = new int[MAX_CAPACITY * 2];
+        int newMaxCapacity = MAX_CAPACITY * 2;
+        int[] newArr = new int[newMaxCapacity];
         System.arraycopy(items, 0, newArr, 0, size);
+        MAX_CAPACITY = newMaxCapacity;
         items = newArr;
     }
 
