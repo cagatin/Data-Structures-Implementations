@@ -6,11 +6,18 @@ public class ArrayList {
     // Instance variables
     private int[] items;
     private int size;
+    private int MAX_CAPACITY = 100;
 
     // Constructor to create an empty ArrayList
     public ArrayList() {
-        items = new int[100];
+        items = new int[MAX_CAPACITY];
         size = 0;
+    }
+
+    public void resize() {
+        int[] newArr = new int[MAX_CAPACITY * 2];
+        System.arraycopy(items, 0, newArr, 0, size);
+        items = newArr;
     }
 
     // Inserts an item at the end of the ArrayList
