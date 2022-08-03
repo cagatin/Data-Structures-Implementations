@@ -1,3 +1,6 @@
+/* Invariants:
+ * the last item in the array is always found at items[size]
+*/
 public class ArrayList {
     // Instance variables
     private int[] items;
@@ -12,7 +15,7 @@ public class ArrayList {
     // Inserts an item at the end of the ArrayList
     public void addLast(int item) {
         items[size] = item;
-        size++;
+        size += 1;
     }
 
     // Returns the item at the end of the ArrayList
