@@ -11,25 +11,30 @@ public class ArrayList {
 
     // Inserts an item at the end of the ArrayList
     public void addLast(int item) {
+        items[size] = item;
+        size++;
     }
 
     // Returns the item at the end of the ArrayList
     public int getLast() {
-        return 0;
+        return items[size];
     }
 
     // Retrieve the ith item in the ArrayList (Zero indexed)
     public int get(int i) {
-        return 0;
+        return items[i];
     }
 
     // Returns the number of items in the ArrayList
     public int size() {
-        return 0;
+        return size;
     }
 
     // Deletes the last item in the list and returns the deleted item
     public int removeLast() {
-        return 0;
+        int res = getLast();
+        items[size] = 0;
+        size -= 1;
+        return res;
     }
 }
