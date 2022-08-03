@@ -14,7 +14,8 @@ public class ArrayList {
         size = 0;
     }
 
-    public void resize() {
+    // Method to to resize the underlying array
+    private void resize() {
         int[] newArr = new int[MAX_CAPACITY * 2];
         System.arraycopy(items, 0, newArr, 0, size);
         items = newArr;
@@ -22,6 +23,9 @@ public class ArrayList {
 
     // Inserts an item at the end of the ArrayList
     public void addLast(int item) {
+        if (size == MAX_CAPACITY) {
+            resize();
+        }
         items[size] = item;
         size += 1;
     }
