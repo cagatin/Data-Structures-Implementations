@@ -1,5 +1,6 @@
 /* Invariants:
- * the last item in the array is always found at items[size]
+ * the last item in the array is always found at size - 1.
+ * position of the next item to be inserted will be at size. 
 */
 public class ArrayList {
     // Instance variables
@@ -20,7 +21,7 @@ public class ArrayList {
 
     // Returns the item at the end of the ArrayList
     public int getLast() {
-        return items[size];
+        return items[size - 1];
     }
 
     // Retrieve the ith item in the ArrayList (Zero indexed)
