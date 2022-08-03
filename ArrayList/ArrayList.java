@@ -4,7 +4,7 @@ public class ArrayList {
     private int size;
 
     // Constructor to create an empty ArrayList
-    public Arraylist() {
+    public ArrayList() {
         items = new int[100];
         size = 0;
     }
