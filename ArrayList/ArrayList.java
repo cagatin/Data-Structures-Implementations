@@ -6,11 +6,11 @@ public class ArrayList {
     // Instance variables
     private int[] items;
     private int size;
-    private int MAX_CAPACITY = 100;
+    private int INIT_CAPACITY = 100;
 
     // Constructor to create an empty ArrayList
     public ArrayList() {
-        items = new int[MAX_CAPACITY];
+        items = new int[INIT_CAPACITY];
         size = 0;
     }
 
