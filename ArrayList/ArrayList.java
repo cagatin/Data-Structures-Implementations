@@ -2,27 +2,27 @@
  * the last item in the array is always found at size - 1.
  * position of the next item to be inserted will be at size. 
 */
-public class ArrayList {
+public class ArrayList<Item> {
     // Instance variables
-    private int[] items;
+    private Item[] items;
     private int size;
     private int INIT_CAPACITY = 100;
 
     // Constructor to create an empty ArrayList
     public ArrayList() {
-        items = new int[INIT_CAPACITY];
+        items = (Item[]) new Object[INIT_CAPACITY];
         size = 0;
     }
 
     // Method to to resize the underlying array
     private void resize(int capacity) {
-        int[] newArr = new int[capacity * 2];
+        Item[] newArr = (Item[]) new Object[capacity * 2];
         System.arraycopy(items, 0, newArr, 0, size);
         items = newArr;
     }
 
     // Inserts an item at the end of the ArrayList
-    public void addLast(int item) {
+    public void addLast(Item item) {
         if (size == items.length) {
             resize(items.length);
         }
@@ -31,12 +31,12 @@ public class ArrayList {
     }
 
     // Returns the item at the end of the ArrayList
-    public int getLast() {
+    public Item getLast() {
         return items[size - 1];
     }
 
     // Retrieve the ith item in the ArrayList (Zero indexed)
-    public int get(int i) {
+    public Item get(int i) {
         return items[i];
     }
 
@@ -46,8 +46,8 @@ public class ArrayList {
     }
 
     // Deletes the last item in the list and returns the deleted item
-    public int removeLast() {
-        int res = getLast();
+    public Item removeLast() {
+        Item res = getLast();
         size -= 1;
         return res;
     }
