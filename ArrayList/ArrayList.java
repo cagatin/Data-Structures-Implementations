@@ -48,6 +48,7 @@ public class ArrayList<Item> {
     // Deletes the last item in the list and returns the deleted item
     public Item removeLast() {
         Item res = getLast();
+        items[size - 1] = null; // change deleted value to null
         size -= 1;
         return res;
     }
