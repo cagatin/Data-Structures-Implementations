@@ -24,7 +24,7 @@ public class ArrayList {
     // Inserts an item at the end of the ArrayList
     public void addLast(int item) {
         if (size == items.length) {
-            resize(items.length * 2);
+            resize(items.length);
         }
         items[size] = item;
         size += 1;
