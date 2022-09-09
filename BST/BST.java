@@ -45,7 +45,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    /*
+    /**
      * Function which checks if the BST contains a given key.
      * 
      * @param key: key to search for within the BST
@@ -64,13 +64,13 @@ public class BST<Key extends Comparable<Key>, Value> {
         return get(key) != null;
     }
 
-    /*
+    /**
      * Returns the value associated w/ the given key.
      * 
      * @param key: the key to search for within the symbol table.
      * 
      * @return: the value associated w/ the given key is in the symbol table
-     * and {@code null} if the key is not in the symbol table.
+     *          and {@code null} if the key is not in the symbol table.
      * 
      * @throws: IlelgalArgumentException if {@code key} is {@code null}.
      */
@@ -98,5 +98,49 @@ public class BST<Key extends Comparable<Key>, Value> {
         } else {
             return getHelper(x.left, key);
         }
+    }
+
+    /**
+     * Inserts the specified key-value pair into the symbol table, overwriting the
+     * old
+     * value w/ a new value if the symbol table already contains the specified key.
+     * Deletes the specified key (and its associated value) from this symbol table
+     * if
+     * the specified value is {@code null}.
+     * 
+     * @param key: the key to insert.
+     * @param val: the value to insert.
+     * @throws: IllegalArgumetnException if {@code key} is {@code null}
+     */
+    public void put(Key key, Value val) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+        if (val == null) {
+            // delete(key);
+            return;
+        }
+
+        // pass the root node into the put helepr
+        root = putHelper(root, key, val);
+    }
+
+    // helper for put operation.
+    private Node putHelper(Node x, Key key, Value val) {
+        if (x == null) { // Base Case: Insert the key as a child of the leaf Node.
+            return new Node(key, val, 1); // Place new Node at the leaf.
+        }
+
+        int cmp = key.compareTo(x.key);
+
+        if (cmp < 0) { // Case: Key is smaller than the key at the current node.
+            x.left = putHelper(x.left, key, val); // Reassign left pointer to result of insertion.
+        } else if (cmp > 0) { // Case: Key is larger than the key at the current node.
+            x.right = putHelper(x.right, key, val); // Reassign right pointer to tresult of insertion.
+        } else { // Case: Key and key at current node are equal.
+            x.val = val; // Overwrite old key with new key.
+        }
+        x.size = 1 + sizeHelper(x.left) + sizeHelper(x.right); // Update the size variable of the BST
+        return x;
     }
 }
