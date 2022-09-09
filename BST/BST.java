@@ -79,13 +79,24 @@ public class BST<Key extends Comparable<Key>, Value> {
         return getHelper(root, key);
     }
 
-    private Value get(Node x, Key key) {
+    private Value getHelper(Node x, Key key) {
         if (key == null) {
             throw new IllegalArgumentException("Argument to contains cannot be null.");
         }
         // if the Node is empty, return null (No value found).
         if (x == null) {
             return null;
+        }
+        // cmp == 0 --> Keys are equal.
+        // cmp = negative --> key is smaller than x.key
+        // cmp = positive --> key is larger than x.key
+        int cmp = key.compareTo(x.key);
+        if (cmp == 1) {
+            return x.val;
+        } else if (cmp > 0) {
+            return getHelper(x.right, key);
+        } else {
+            return getHelper(x.left, key);
         }
     }
 }
